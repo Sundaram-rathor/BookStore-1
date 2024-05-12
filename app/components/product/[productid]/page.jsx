@@ -1,18 +1,18 @@
-// components/product/[productid].js
+// components/product/[productid]/page.jsx
 'use client'
-
 import React, { useState, useEffect } from 'react';
 import ProductDisplay from '../../productDisplay/ProductDisplay.jsx';
 import productDataPromise from '../../../data/collection.js';
+import dynamic from 'next/dynamic';
 
-function PageNo({ params }) {
+const PageNo = (props) => {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await productDataPromise;
-        const foundProduct = data.find((p) => p.id.toString() === params.productid);
+        const foundProduct = data.find((p) => p.id.toString() === props.params.productid);
         setProduct(foundProduct);
       } catch (error) {
         console.error('Error fetching product data:', error);
@@ -20,7 +20,7 @@ function PageNo({ params }) {
     };
 
     fetchData();
-  }, [params.productid]);
+  }, [props.params.productid]);
 
   return (
     <div>
@@ -31,7 +31,9 @@ function PageNo({ params }) {
       )}
     </div>
   );
-}
+};
 
-export default PageNo;
-
+export default dynamic(() => Promise.resolve(PageNo), {
+  loading: () => <div>Loading...</div>,
+  ssr: false,
+});
