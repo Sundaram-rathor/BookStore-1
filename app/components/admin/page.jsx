@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Head from "next/head";
-import TransformImage from "../image/image.js";
+
 import { CldUploadButton } from 'next-cloudinary';
 
 function Dashboard() {
