@@ -10,3 +10,4 @@ const productDataPromise = fetch('https://fakestoreapi.com/products')
     });
 
 export default productDataPromise;
+    

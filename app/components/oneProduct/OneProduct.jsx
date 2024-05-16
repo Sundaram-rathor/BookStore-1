@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 
 
-function OneProduct({product }) {
+function OneProduct({product}) {
 
   
 
